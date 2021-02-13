@@ -239,6 +239,11 @@ class EGVAR(context_menu,actions) {
             statement = QUOTE(_hoveredEntity setUnitLoadout GVAR(loadout));
             icon = QPATHTOF(ui\paste_ca.paa);
         };
+        class Reset {
+            displayName = "$STR_A3_RscDisplayCampaignLobby_Reset";
+            statement = QUOTE(_hoveredEntity setUnitLoadout configOf _hoveredEntity);
+            icon = "\a3\3den\Data\Displays\Display3DEN\ToolBar\undo_ca.paa";
+        };
     };
     class Inventory {
         displayName = "$STR_A3_Gear1";
@@ -310,9 +315,16 @@ class EGVAR(context_menu,actions) {
             statement = QUOTE(_objects call FUNC(refuelVehicles));
             icon = "\a3\ui_f\data\igui\cfg\simpleTasks\types\refuel_ca.paa";
         };
+        class UnloadViV {
+            displayName = "$STR_A3_ModuleDepot_Unload";
+            condition = QUOTE(_objects call FUNC(canUnloadViV));
+            statement = QUOTE(_objects call FUNC(unloadViV));
+            icon = "\a3\ui_f\data\IGUI\Cfg\Actions\unloadVehicle_ca.paa";
+        };
     };
     class EditableObjects {
         displayName = CSTRING(EditableObjects);
+        statement = QUOTE(call FUNC(openEditableObjectsDialog));
         icon = QPATHTOEF(modules,ui\edit_obj_ca.paa);
         priority = 30;
         class Add {
@@ -320,7 +332,7 @@ class EGVAR(context_menu,actions) {
             icon = QPATHTOF(ui\add_ca.paa);
             class 10m {
                 displayName = CSTRING(10m);
-                statement = QUOTE([ARR_2(true,_args)] call FUNC(editableObjects));
+                statement = QUOTE([ARR_3(true,_position,_args)] call FUNC(updateEditableObjects));
                 icon = QPATHTOF(ui\add_ca.paa);
                 args = 10;
             };
@@ -342,7 +354,7 @@ class EGVAR(context_menu,actions) {
             icon = QPATHTOF(ui\remove_ca.paa);
             class 10m {
                 displayName = CSTRING(10m);
-                statement = QUOTE([ARR_2(false,_args)] call FUNC(editableObjects));
+                statement = QUOTE([ARR_3(false,_position,_args)] call FUNC(updateEditableObjects));
                 icon = QPATHTOF(ui\remove_ca.paa);
                 args = 10;
             };

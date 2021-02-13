@@ -27,6 +27,7 @@ class CfgPatches {
             QGVAR(moduleCreateRP),
             QGVAR(moduleCreateTarget),
             QGVAR(moduleCreateTeleporter),
+            QGVAR(moduleCrewToGunner),
             QGVAR(moduleDamageBuildings),
             QGVAR(moduleEarthquake),
             QGVAR(moduleEditableObjects),
@@ -42,6 +43,7 @@ class CfgPatches {
             QGVAR(moduleGlobalHint),
             QGVAR(moduleGroupSide),
             QGVAR(moduleHeal),
+            QGVAR(moduleHideTerrainObjects),
             QGVAR(moduleHideZeus),
             QGVAR(moduleLightSource),
             QGVAR(moduleMakeInvincible),
@@ -78,6 +80,8 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
+
+PRELOAD_ADDONS;
 
 #include "CfgEventHandlers.hpp"
 #include "CfgFactionClasses.hpp"
